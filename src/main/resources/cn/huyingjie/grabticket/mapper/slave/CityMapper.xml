@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.huyingjie.grabticket.mapper.AddressMapper" >
+
+    <resultMap id="CityResultMap" type="cn.huyingjie.grabticket.entity.City" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="city_name" property="cityName" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getCityByName" resultMap="CityResultMap">
+        select * from city where city_name = #{name}
+    </select>
+
+</mapper>
