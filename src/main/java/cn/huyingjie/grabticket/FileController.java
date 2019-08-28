@@ -11,6 +11,7 @@ import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,6 +42,7 @@ public class FileController {
             @ApiImplicitParam(name = "multipartFiles", value = "多文件及相信内容", required = true, dataType = "MultipartFile[]")
     })
     @RequestMapping("/upload")
+    @Transactional(rollbackFor = {NullPointerException.class, Exception.class})
     public Object uploadFile(@RequestParam("file") MultipartFile[] multipartFiles, final HttpServletResponse response, final HttpServletRequest request) {
         File fileDir = new File(rootPath);
         if (!fileDir.exists() && !fileDir.isDirectory()) {
