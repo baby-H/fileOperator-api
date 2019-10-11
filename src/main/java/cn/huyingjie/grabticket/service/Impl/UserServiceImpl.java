@@ -6,15 +6,19 @@ import cn.huyingjie.grabticket.mapper.slave.CityMapper;
 import cn.huyingjie.grabticket.mapper.master.UserMapper;
 import cn.huyingjie.grabticket.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 
     @Autowired
-    private UserMapper userMapper; // 主数据源
+    // 主数据源
+    private UserMapper userMapper;
 
     @Autowired
-    private CityMapper cityMapper; // 从数据源
+    // 从数据源
+    private CityMapper cityMapper;
 
 
 
@@ -24,7 +28,6 @@ public class UserServiceImpl implements UserService {
         City city = cityMapper.getCityByName("上海");
         User user = userMapper.getUserByName(userName);
         user.setCity(city);
-
         return user;
     }
 

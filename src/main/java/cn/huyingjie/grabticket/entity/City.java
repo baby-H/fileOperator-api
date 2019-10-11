@@ -12,14 +12,15 @@ public class City {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+
+
+    private String cityName;
+
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
-
-    private String name;
-
 }
